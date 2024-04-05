@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <style>
+        .hidden{
+            display: none;
+        }
+        .visible{
+            display: block;
+        }
+    </style>
+</head>
+
+
+
+<body>
+    <h1>
+        <center>Job Application Form</center>
+    </h1><br>
+    <hr><br>
+    <form action="/list/<%=result1.id%>/update" method="post" name="form" onsubmit="return validate()" id="myform">
+
+
+    <div class="BasicDetail tab visible">
+    <table>
+        <h2>Basic Detail</h2><br>
+
+        
+            <tr>
+                <td><label for="first">First Name</label></td>
+                <td><input type="text" id="firstname" name="firstname" value="<%=result1.FirstName%>" ><br>
+                    <h6 id="fname"></h6>
+                </td>
+            </tr>
+
+            <tr>
+                <td><label for="last">Last Name</label></td>
+                <td><input type="text" id="last" name="lastname" value="<%=result1.LastName%>" ><br>
+                    <h6 id="lname"></h6>
+                </td>
+            </tr>
+
+            <tr>
+                <td><label for="designation1">Designation</label></td>
+                <td><input type="text" id="designation1" name="designation1" value="<%=result1.Designation%>" ><br>
+                    <h6 id="degn"></h6>
+                </td>
+            </tr>
+
+            <tr>
+                <td><label for="mailID">E-mail</label></td>
+                <td><input type="text" id="mailID" name="email" value="<%=result1.email%>"><br>
+                    <h6 id="mail"></h6>
+                </td>
+            </tr>
+
+            <tr>
+                <td><label for="address1">Address 1</label></td>
+                <td><input type="text" id="address1" name="address_1" value="<%=result1.address1%>" ><br>
+                    <h6 id="add"></h6>
+                </td>
+            </tr>
+
+            <tr>
+                <td><label for="address2">Address 2</label></td>
+                <td><input type="text" id="address2" name="address_2" value="<%=result1.address2%>" ><br>
+                    <h6 id="add2"></h6>
+                </td>
+            </tr>
+
+            <tr>
+                <td><label for="ContactNo">Contact No</label></td>
+                <td><input type="text" id="ContactNo" name="no" value="<%=result1.ContactNo%>" ><br>
+                    <h6 id="no"></h6>
+                </td>
+            </tr>
+
+            <tr>
+                <td><label for="city">City</label></td>
+                <td><input type="text" id="city" name="City" value="<%=result1.city%>" ><br>
+                    <h6 id="cy"></h6>
+                </td>
+            </tr>
+
+            <tr>
+                <td><label for="state">State</label></td>
+                <td>
+                    <select name="state" id="State">
+                        <option value="Gujarat" <%if(result1.state=='Gujarat'){%>selected<%}%>>Gujarat</option>
+                        <option value="Kerla" <%if(result1.state=='Kerla'){%>selected<%}%>>Kerla</option>
+                        <option value="Madhya Pradesh" <%if(result1.state=='Madhya Pradesh'){%>selected<%}%>>Madhya Pradesh</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td><label for="Gender">Gender</label></td>
+                <td>
+                    <input name="Gender" type="radio" value="m" <%=result1.gender==='m'? 'checked' : ''%>> Male <h6 id="gr"></h6>
+                    <input name="Gender" type="radio" value="f" <%=result1.gender==='f'? 'checked' : ''%>> Female <h6 id="gr"></h6>
+                </td>
+            </tr>
+
+            <tr>
+                <td><label for="zipcode">Zipcode</label></td>
+                <td><input type="text" id="zipcode" name="Zipcode" value="<%=result1.zipcode%>" ><br>
+                    <h6 id="code"></h6>
+                </td>
+            </tr>
+
+
+
+            <tr>
+                <td><label for="RelationshipStatus">Relationship Status</label></td>
+                <td>
+                    <select name="relationshipStatus" id="status1">
+                        <option value="Single" name="Single" <%if(result1.relationshipStatus=='Single'){%>selected<%}%>>Single</option>
+                        <option value="Married" name="Married" <%if(result1.relationshipStatus=='Married'){%>selected<%}%>>Married</option><br><br>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td><label for="DOB">Date Of Birth</label></td>
+                <td><input type="text" id="DOB" name="date" value="<%=JSON.stringify(result1.DateOfBirth).slice(1,11)%>" ><br>
+                    <h6 id="bdate"></h6>
+                </td>
+            </tr>
+    </table>
+</div><br><br><br>
+
+    <div class="education tab hidden">
+        <h2>Education Detail</h2>
+
+        <input type="button" id="plus" value="+" onclick="add_edu()">
+        <input type="button" id="minus" value="-" onclick="minus_edu()">
+
+        <div class="row3">
+            <%for(let i = 0; i<result7.length; i++){%>
+            
+            <table>
+                <tr>
+                    <td><input type="hidden" name="educationid[]"><%=result7[i].eid%></td>
+                    <td><label for="edutype">Education type</label></td>
+                    <td>
+                        <select name="edutype[]">
+                            <option value="SSC" name="SSC">SSC</option>
+                            <option value="HSC" name="HSC">HSC</option>
+                            <option value="bachelor" name="bachelor">bachelor</option>
+                            <option value="master" name="master">master</option>
+                        </select>
+                    </td>
+
+                    <td><label for="board1">Name Of Board</label></td>
+                    <td><input type="text" id="board1" name="board1" value="<%=result7[i].boardname%>"><br>
+                        <h6 id="name"></h6>
+                    </td>
+
+
+
+                    <td><label for="passingyear1">Passing Year</label></td>
+                    <td><input type="text" id="passingyear1" name="passingyear1" value="<%=result7[i].passingyear%>"><br>
+                        <h6 id="py1"></h6>
+                    </td>
+
+                    <td><label for="percentage1">Percentage</label></td>
+                    <td><input type="text" id="percentage1" name="percentage1[]" value="<%=result7[i].percentage%>"><br>
+                        <h6 id="per1"></h6>
+
+                    </td>
+                </tr>
+            </table>
+            <%}%>
+        </div>
+    </div>
+
+
+
+
+
+        <div class="tab hidden">
+            <table>
+                <h2>Work Experience</h2>
+
+                
+                    
+
+                    <input type="button" id="plus" value="+" onclick="add_work()">
+                    <input type="button" id="minus" value="-" onclick="minus_work()">
+
+                    <div class="row2">
+                        <%for(let i = 0; i<result2.length; i++){%>
+
+                        <table>
+                            <tr>
+                                <td><label for="company1">Company Name</label></td>
+                                <td><input type="text" id="company1" name="company1[]" value="<%=result2[i].CompanyName%>"><br></td>
+
+                                <td><label for="designation">Designation</label></td>
+                                <td><input type="text" id="designation" name="designation[]" value="<%=result2[i].Designation%>"><br></td>
+
+                                <td><label for="fromdate">From date</label></td>
+                                <td><input type="text" id="fromdate" name="fromdate[]" value="<%=JSON.stringify(result2[i].Fromdate).slice(1,11)%>"><br></td>
+
+                                <td><label for="fromdate">to date</label></td>
+                                <td><input type="text" id="todate" name="todate[]" value="<%=JSON.stringify(result2[i].todate).slice(1,11)%>"><br></td>
+                            </tr>
+                        </table>
+                        <%}%>
+
+                    </div>
+               
+        </div><br><br><br>
+
+
+        <div class="languages tab hidden">
+            <h2>Language Known</h2>
+            <table>
+
+                <tr>
+                    <td><input type="hidden" name="languages[]" value="<%=hindi.length!=0 && hindi[0].id%>"></td>
+                    <td><label for="hindi">Hindi</label></td>
+                    <td><input type="checkbox" id="hindi" name="hindi" <%=hindi.length!=0 && hindi[0].l_id===7 ? 'checked':'' %>></td>
+
+                    <td><label for="Read">Read</label></td>
+                    <td><input type="radio" id="readh" name="readh" <%=hindi.length!=0 && hindi[0].r==='1'? 'checked':''%>></td>
+
+                    <td><label for="write">Write</label></td>
+                    <td><input type="radio" id="writeh" name="writeh" <%=hindi.length!=0 && hindi[0].w==='1'? 'checked':''%>></td>
+
+                    <td><label for="speak">Speak</label></td>
+                    <td><input type="radio" id="speakh" name="speakh" <%=hindi.length!=0 && hindi[0].s==='1'? 'checked':''%>><br><br></td>
+                </tr>
+
+
+                <tr>
+                    <td><input type="hidden" name="languages[]" value="<%=english.length!=0 && english[0].id%>"></td>
+                     <td><label for="english">English</label></td>
+                    <td><input type="checkbox" id="english" name="english"  <%=english.length!=0 && english[0].l_id===8 ? 'checked':'' %>></td>
+
+                    <td><label for="Read">Read</label></td>
+                    <td><input type="radio" id="reade" name="reade" <%=english.length!=0 && english[0].r==='1'? 'checked':''%>></td>
+
+                    <td><label for="write">Write</label></td>
+                    <td><input type="radio" id="writee" name="writee" <%=english.length!=0 && english[0].w==='1'? 'checked':''%>></td>
+
+                    <td><label for="speak">Speak</label></td>
+                    <td><input type="radio" id="speake" name="speake" <%=english.length!=0 && english[0].s==='1'? 'checked':''%>><br><br></td>
+                </tr>
+
+
+                <tr>
+                    <td><input type="hidden" name="languages[]" value="<%=gujarati.length!=0 && gujarati[0].id%>"></td>
+                    <td><label for="gujarati">Gujarati</label></td>
+                    <td><input type="checkbox" id="gujarati" name="gujarati" <%=gujarati.length!=0 && gujarati[0].l_id==9 ? 'checked':'' %>></td>
+
+                    <td><label for="Read">Read</label></td>
+                    <td><input type="radio" id="readg" name="readg" <%=gujarati.length!=0 && gujarati[0].r==='1'? 'checked':''%>></td>
+
+                    <td><label for="write">Write</label></td>
+                    <td><input type="radio" id="writeg" name="writeg" <%=gujarati.length!=0 && gujarati[0].w==='1'? 'checked':''%>></td>
+
+                    <td><label for="speak">Speak</label></td>
+                    <td><input type="radio" id="speakg" name="speakg" <%=gujarati.length!=0 && gujarati[0].s==='1'? 'checked':''%>><br><br></td>
+                </tr>
+            </table>
+        </div><br><br><br>
+
+
+
+        <div class="tab hidden">
+            <h2>Technology You Know</h2>
+            <table>
+                <tr>
+                    <td><input type="hidden" name="tech[]" value="<%=php.length!=0 && php[0].id%>"></td>
+                    <td><label for="php">php</label></td>
+                    <td><input type="checkbox" id="php" name="php" value="php"<%=php.length!=0 && php[0].tech_id==10? 'checked':''%>></td>
+
+                    <td><label for="beginer">Beginer</label></td>
+                    <td><input type="radio" id="beginer" name="tech_php" value="beginer" <%=php.length!=0 && php[0].tech_level===14? 'checked':''%>></td>
+
+                    <td><label for="mediator">Mediator</label></td>
+                    <td><input type="radio" id="mediator" name="tech_php" value="mediator" <%=php.length!=0 && php[0].tech_level===15? 'checked':''%>></td>
+
+                    <td><label for="expert">Expert</label></td>
+                    <td><input type="radio" id="expert" name="tech_php" value="expert" <%=php.length!=0 && php[0].tech_level===16? 'checked':''%>></td>
+                </tr>
+                <tr>
+                    <td><input type="hidden" name="tech[]" value="<%=mySQL.length!=0 && mySQL[0].id%>"></td>
+                    <td><label for="mySQL">mySQL</label></td>
+                    <td><input type="checkbox" id="mySQL" name="mySQL" <%=mySQL.length!=0 && mySQL[0].tech_id==11? 'checked':''%>></td>
+
+                    <td><label for="beginer">Beginer</label></td>
+                    <td><input type="radio" id="beginer" name="tech_mySQL" value="beginer" <%=php.length!=0 && mySQL[0].tech_level===14? 'checked':''%>></td>
+
+                    <td><label for="mediator">Mediator</label></td>
+                    <td><input type="radio" id="mediator" name="tech_mySQL" value="mediator" <%=php.length!=0 && mySQL[0].tech_level===15? 'checked':''%>></td>
+
+                    <td><label for="expert">Expert</label></td>
+                    <td><input type="radio" id="expert" name="tech_mySQL" value="expert" <%=php.length!=0 && mySQL[0].tech_level===16? 'checked':''%>></td>
+                </tr>
+                <tr>
+                    <td><input type="hidden" name="tech[]" value="<%=laravel.length!=0 && laravel[0].id%>"></td>
+                    <td><label for="laravel">laravel</label></td>
+                    <td><input type="checkbox" id="laravel" name="laravel" <%=laravel.length!=0 && laravel[0].tech_id==12? 'checked':''%>></td>
+
+                    <td><label for="beginer">Beginer</label></td>
+                    <td><input type="radio" id="beginer" name="tech_laravel" value="beginer" <%=php.length!=0 && laravel[0].tech_level===14? 'checked':''%>> </td>
+
+                    <td><label for="mediator">Mediator</label></td>
+                    <td><input type="radio" id="mediator" name="tech_laravel" value="mediator" <%=php.length!=0 && laravel[0].tech_level===15? 'checked':''%>></td>
+
+                    <td><label for="expert">Expert</label></td>
+                    <td><input type="radio" id="expert" name="tech_laravel" value="expert" <%=php.length!=0 && laravel[0].tech_level===16? 'checked':''%>></td>
+                </tr>
+                <tr>
+                    <td><input type="hidden" name="tech[]" value="<%=oracle.length!=0 && laravel[0].id%>"></td>
+                    <td><label for="oracle">oracle</label></td>
+                    <td><input type="checkbox" id="oracle" name="oracle" <%=oracle.length!=0 && oracle[0].tech_id==13? 'checked':''%> ></td>
+
+                    <td><label for="beginer">Beginer</label></td>
+                    <td><input type="radio" id="beginer" name="tech_oracle" value="beginer" <%=php.length!=0 && oracle[0].tech_level===14? 'checked':''%>></td>
+
+                    <td><label for="mediator">Mediator</label></td>
+                    <td><input type="radio" id="mediator" name="tech_oracle" value="mediator" <%=php.length!=0 && oracle[0].tech_level===15? 'checked':''%>></td>
+
+                    <td><label for="expert">Expert</label></td>
+                    <td><input type="radio" id="expert" name="tech_oracle" value="expert" <%=php.length!=0 && oracle[0].tech_level===16? 'checked':''%>></td>
+                </tr>
+            </table>
+        </div><br><br><br>
+
+
+        <div class="reference tab hidden">
+            <div class="reference">
+                <h2>Reference Contact</h2>
+
+
+                <input type="button" id="plus" value="+" onclick="add()">
+                <input type="button" id="minus" value="-" onclick="refm()">
+
+                <div class="row">
+                    <%for(let i = 0; i<result2.length; i++){%>
+                    <table>
+
+                        <tr>
+                            <td><label for="name">Name</label></td>
+                            <td><input type="text" id="name" name="name1[]" value="<%=result3[i].name%>"><br></td>
+
+                            <td><label for="contact">Contact No</label></td>
+                            <td><input type="text" id="contact" name="contact[]" value="<%=result3[i].ContactNo%>"><br></td>
+
+                            <td><label for="relation">Relation</label></td>
+                            <td><input type="text" id="relation" name="relation[]" value="<%=result3[i].Relation%>"><br></td>
+                        </tr>
+                    </table>
+                    <%}%>
+
+                </div><br><br><br>
+            </div>
+        </div>
+
+
+
+        <div class="preference tab hidden">
+            <div class="preference">
+                <h2>Preference</h2>
+
+                <input type="button" id="plus" value="+" onclick="add_pre()">
+                <input type="button" id="minus" value="-" onclick="minus_pre()">
+
+                <div class="row1">
+                    <%for(let i = 0; i<result4.length; i++){%>
+                    <table>
+
+                        <tr>
+                            <td><label for="location">Prefered Location</label></td>
+                            <td><input type="text" id="location" name="location[]" value="<%=result4[i].PreferedLocation%>"><br></td>
+                        </tr>
+
+                        <tr>
+                            <td><label for=" period">Notice Period</label></td>
+                            <td><input type="text" id="period" name="period[]" value="<%=result4[i].NoticePeriod%>"><br></td>
+                        </tr>
+
+                        <tr>
+                            <td><label for="expected">Expected CTC</label></td>
+                            <td><input type="text" id="expected" name="expected[]" value="<%=result4[i].ExpectedCTC%>"><br></td>
+                        </tr>
+
+                        <tr>
+                            <td><label for="current">Current CTC</label></td>
+                            <td><input type="text" id="current" name="current[]" value="<%=result4[i].CurrentCTC%>"><br></td>
+                        </tr>
+                    </table>
+                    <%}%>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+    <tr>
+    <input type="submit" value="update" id="update"  style="display: none;" onclick="updatedata()">
+</tr>
+<br><br><br>
+
+<tr>
+    <td>
+        <div id="change">
+            <input type="button" id="prevbtn" value="PREVIOUS" onclick="prev()">
+            <input type="button" id="nextbtn" value="NEXT" style="margin-left: 900px;" onclick="next()">
+
+        </div>
+    </td>
+</tr>
+</form>
+
+<script>
+  
+
+    var currentsection = 0;
+    var sec = document.getElementsByClassName('tab');
+    console.log(sec);
+    var nextbut = document.getElementById('nextbtn');
+    function next() {
+        sec[currentsection].classList.add('hidden');
+        sec[currentsection].classList.remove('visible');
+    
+        currentsection++;
+        if (currentsection < sec.length) {
+            sec[currentsection].classList.remove('hidden');
+            sec[currentsection].classList.add('visible');
+        } else {
+            currentsection = 0;
+            sec[currentsection].classList.add('hidden');
+            sec[currentsection].classList.remove('visible');
+        }
+        if(currentsection === (sec.length-1))
+        {
+            console.log("hello");
+            nextbtn.style.display='none';
+            update.style.display='block';
+        }else{
+            nextbtn.style.display='block';
+            update.style.display='none';
+        }
+        if(currentsection === 0)
+        {
+            console.log("hello");
+            prevbtn.style.display='none';
+        }else{
+            prevbtn.style.display='block';
+        }
+    }
+    
+    function prev() {
+            sec[currentsection].classList.add('hidden');
+            sec[currentsection].classList.remove('visible');
+    
+            currentsection--;
+            if (currentsection >= 0) {
+                sec[currentsection].classList.remove('hidden');
+                sec[currentsection].classList.add('visible');
+            } else {
+                currentsection = sec.length - 1;
+                sec[currentsection].classList.remove('hidden');
+                sec[currentsection].classList.add('visible');
+            }
+            if (currentsection === 0) {
+                prevbtn.style.display = 'none';
+            } else {
+                prevbtn.style.display = 'block';
+            }
+            if (currentsection === (sec.length-1)) {
+                nextbtn.style.display = 'none';
+                update.style.display = 'block';
+    
+            } else {
+                nextbtn.style.display = 'block';
+                update.style.display='none';
+            }
+        }
+    
+    
+        reference = 2;
+        preference = 2;
+        experience = 2;
+        education = 2;
+    
+        function add() {
+            row = document.getElementsByClassName("row")[0];
+            row.innerHTML += `
+            <table>
+            
+            <tr>
+                <td><label for="name">Name</label></td>
+                <td><input type="text" id="name" name="name" value=""><br></td>
+    
+                <td><label for="contact">Contact No</label></td>
+                <td><input type="text" id="contact" name="contact" value=""><br></td>
+    
+                <td><label for="relation">Relation</label></td>
+                <td><input type="text" id="relation" name="relation" value=""><br></td>
+            </tr>
+    
+       
+        </table>
+            `;
+            reference++;
+        }
+    
+        function refm() {
+            if (reference > 2) {
+                row = document.getElementsByClassName("row");
+                row[0].removeChild(row[0].lastElementChild);
+                reference--;
+                console.log(row);
+            }
+        }
+    
+    
+    
+        function add_pre() {
+            row1 = document.getElementsByClassName("row1")[0];
+            row1.innerHTML += `
+            <table>
+    
+                <tr>
+                    <td><label for="location">Prefered Location</label></td>
+                    <td><input type="text" id="location" name="location" value=""><br></td>
+                </tr>
+    
+                <tr>
+                    <td><label for=" period">Notice Period</label></td>
+                    <td><input type="text" id="period" name="period" value=""><br></td>
+                </tr>
+    
+                <tr>
+                    <td><label for="expected">Expected CTC</label></td>
+                    <td><input type="text" id="expected" name="expected" value=""><br></td>
+                </tr>
+    
+                <tr>
+                    <td><label for="current">Current CTC</label></td>
+                    <td><input type="text" id="current" name="current" value=""><br></td>
+                </tr>
+                </table>
+            `;
+            preference++;
+        }
+    
+    
+        function minus_pre() {
+            if (preference > 2) {
+                row1 = document.getElementsByClassName("row1");
+                row1[0].removeChild(row1[0].lastElementChild);
+                preference--;
+                console.log(row1);
+            }
+        }
+    
+    
+    
+        function add_work() {
+            row2 = document.getElementsByClassName("row2")[0];
+            row2.innerHTML += `
+            <table>
+                    <tr>
+                        <td><label for="company1">Company Name</label></td>
+                        <td><input type="text" id="company1" name="company1" value=""><br></td>
+    
+                        <td><label for="designation">Designation</label></td>
+                        <td><input type="text" id="designation" name="designation" value=""><br></td>
+    
+                        <td><label for="fromdate">From date</label></td>
+                        <td><input type="text" id="fromdate" name="fromdate" value=""><br></td>
+    
+                        <td><label for="fromdate">to date</label></td>
+                        <td><input type="text" id="todate" name="todate" value=""><br></td>
+                    </tr>
+                </table>
+            `;
+            experience++;
+        }
+    
+    
+        function minus_work() {
+            if (experience > 2) {
+                row2 = document.getElementsByClassName("row2");
+                row2[0].removeChild(row2[0].lastElementChild);
+                experience--;
+                console.log(row2);
+            }
+        }
+    
+    
+        function add_edu() {
+            row3 = document.getElementsByClassName("row3")[0];
+            row3.innerHTML += `
+            <table>
+                            <tr>
+                                <td><label for="edutype">Education type</label></td>
+                                <td>
+                                    <select name="edutype[]">
+                                        <option value="SSC" name="SSC">SSC</option>
+                                        <option value="HSC" name="HSC">HSC</option>
+                                        <option value="bachelor" name="bachelor">bachelor</option>
+                                        <option value="master" name="master">master</option>
+                                    </select>
+                                </td>
+    
+                                <td><label for="board1">Name Of Board</label></td>
+                                <td><input type="text" id="board1" name="board1[]" value=""><br>
+                                    <h6 id="name"></h6>
+                                </td>
+    
+    
+    
+                                <td><label for="passingyear1">Passing Year</label></td>
+                                <td><input type="text" id="passingyear1" name="passingyear1[]" value=""><br>
+                                    <h6 id="py1"></h6>
+                                </td>
+    
+                                <td><label for="percentage1">Percentage</label></td>
+                                <td><input type="text" id="percentage1" name="percentage1[]" value=""><br>
+                                    <h6 id="per1"></h6>
+    
+                                </td>
+                            </tr>
+                        </table>
+            `;
+            education++;
+        }
+    
+        function minus_edu() {
+            if (education > 2) {
+                row3 = document.getElementsByClassName("row3");
+                row3[0].removeChild(row3[0].lastElementChild);
+                education--;
+                console.log(row3);
+            }
+        }
+    
+    
+    
+    
+    
+    
+        async function updatedata() {
+            let dataform = document.getElementById('myform');
+            let data11 = new FormData(dataform);
+            const params = new URLSearchParams(data11);
+            const jobdata = await new Response(params).text();
+            
+            
+            console.log(jobdata);
+            console.log("insert data");
+    
+            let data5 = await fetch("http://localhost:3045/list/<%=result1.id%>/update", {
+                method: "POST",
+                headers: {
+                    'content-type': "application/x-www-form-urlencoded"
+                },
+                body: jobdata
+            })
+        }
+    
+    
+    
+    </script>
+
+</body>
+</html>

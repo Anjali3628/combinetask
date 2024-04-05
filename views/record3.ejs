@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>
+        <center>Job Application Form</center>
+    </h1><br>
+    <hr><br>
+    <h2>Basic Detail</h2><br>
+    <table>
+       
+
+
+
+            <%for (let i=0; i<result.length; i++){ %>
+                <p>Firstname : <%=result[i].FirstName%></p>
+                <p><%=result[i].LastName%></p>
+                <p><%=result[i].Designation%></p>
+                <p><%=result[i].email%></p>
+                <p><%=result[i].address1%></p>
+                <p><%=result[i].address2%></p>
+                <p><%=result[i].ContactNo%></p>
+                <p><%=result[i].city%></p>
+                <p><%=result[i].state%></p>
+                <p><%=result[i].gender%></p>
+                <p><%=result[i].zipcode%></p>
+                <p><%=result[i].relationshipStatus%></p>
+                <p><%=result[i].DateOfBirth%></p>
+
+                <a href="/list/<%=result[i].id%>">update</a>
+
+                
+                
+                <%}%>
+
+
+
+
+
+
+            
+
+
+
+    <!-- <div class="education">
+        <h2>Education Detail</h2>
+        <div class="row3">
+            <table>
+                <tr>
+                    <td><label for="edutype">Education type</label></td>
+                    <td>
+                        <select name="edutype[]">
+                            <option value="SSC" name="SSC">SSC</option>
+                            <option value="HSC" name="HSC">HSC</option>
+                            <option value="bachelor" name="bachelor">bachelor</option>
+                            <option value="master" name="master">master</option>
+                        </select>
+                    </td>
+
+                    <td><label for="board1">Name Of Board</label></td>
+                    <td><input type="text" id="board1" name="board1[]" value=""><br>
+                        <h6 id="name"></h6>
+                    </td>
+
+
+
+                    <td><label for="passingyear1">Passing Year</label></td>
+                    <td><input type="text" id="passingyear1" name="passingyear1[]" value=""><br>
+                        <h6 id="py1"></h6>
+                    </td>
+
+                    <td><label for="percentage1">Percentage</label></td>
+                    <td><input type="text" id="percentage1" name="percentage1[]" value=""><br>
+                        <h6 id="per1"></h6>
+
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div> -->
+    <!-- <tr>
+        <td><input type="submit" value="update"></td>
+    </tr> -->
+    </form>
+    
+</body>
+</html>

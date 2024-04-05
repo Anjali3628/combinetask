@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="form">
+        <form action="/task13" method="get">
+        text<input type="text" name="input" autofocus>
+        <input type="submit" value="go">
+    </form>
+
+<%if(input){%>
+    <%if(type!='select'){%>
+        <%for(let i= 0; i<result2.length; i++){%>
+        <input type="<%=type%>"><%=result2[i].op_name%>
+    <%}%>
+
+    <%}else{%>
+    <select name="" id="">
+        <%for(let i =0; i<result2.length; i++){%>
+        <option value="<%=type%>"><%=result2[i].op_name%></option>
+        <%}%>
+    </select>
+    <%}%>
+    <%}%>
+
+    </div>
+</body>
+
+</html>

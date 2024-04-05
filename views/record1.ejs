@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 90%;
+
+        }
+
+        th,
+        td {
+            border: 1px solid black;
+            padding: 10px 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: blanchedalmond;
+            padding: 10px 10px;
+        }
+
+        .search {
+            text-align: center;
+        }
+
+        #show {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+  
+
+
+    <h1>Submitted Data</h1>
+    <div class="form">
+        <form action="/task12" method="get">
+
+            search <input type="text"  name="search" autofocus value="<%=input%>">
+            <input type="submit" value="go"><br><br>
+        </form>
+    </div>
+
+
+
+
+
+
+    <table>
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>college</th>
+                <th>emailID</th>
+                <th>address</th>
+                <th>city</th>
+                <th>country</th>
+                <th>DOB</th>
+                <th>age</th>
+            </tr>
+        </thead>
+
+        <%for(let i=0 ; i < result.length; i ++ ) { %>
+
+
+
+
+            <tr>
+                <td>
+                    <%= result[i].id %>
+                </td>
+                <td>
+                    <%= result[i].FirstName %>
+                </td>
+                <td>
+                    <%= result[i].LastName %>
+                </td>
+                <td>
+                    <%= result[i].college %>
+                </td>
+                <td>
+                    <%= result[i].emailID %>
+                </td>
+                <td>
+                    <%= result[i].address %>
+                </td>
+                <td>
+                    <%= result[i].city %>
+                </td>
+                <td>
+                    <%= result[i].country %>
+                </td>
+               
+                <td>
+                    <%= result[i].DOB %>
+                </td>
+                <td>
+                    <%= result[i].age %>
+                </td>
+
+            </tr>
+            <% } %>
+
+
+    </table>
+
+    <script>
+        function myFunction() {
+            var a = document.getElementById("show");
+            if (a.style.display === "none") {
+                a.style.display = "block";
+            } else {
+                a.style.display = "none";
+            }
+        }
+    </script>
+
+</body>
+
+</html>

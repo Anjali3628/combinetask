@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table class="table1">
+        <thead>
+           
+        </thead>
+
+        <tbody id="data">
+
+        </tbody>
+
+    </table>
+    <!-- <button id="cmt">comments</button> -->
+
+    <div id="data"></div>
+    <div id="data1"></div>
+
+    <script>
+        console.log("hello");
+        const fetchuser = async () => {
+            var id = window.location.href.split("/").pop();
+
+            console.log(id);
+            const url = `https://jsonplaceholder.typicode.com/posts/${id}`;
+            let dataitem ="";
+            await fetch(url,{
+                headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            },
+            })
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data);
+                var print = document.getElementById("data");
+                print.innerHTML =`
+                <b>userid</b>: ${data.userId}<br>
+                <b>id</b>: ${data.id}<br>
+                <b>title</b>: ${data.title}<br>
+                <b>body</b>: ${data.body} <br>
+                <input type = "button" value = "comments" onclick="fetchcomment()">
+                `;
+            });
+        };
+        const fetchcomment = async() => {
+            var id = window.location.href.split("/").pop();
+
+            console.log(id);
+            const url = `https://jsonplaceholder.typicode.com/posts/${id}/comments`;
+            let dataitem ="";
+            await fetch(url,{
+                headers: {
+                "Content-type": "application/json; charset=UTF-8",
+            },
+            })
+            .then((res) => res.json())
+            .then((data1) => {
+                console.log(data1);
+                for(var i=0;i<5;i++){
+                    var print = document.getElementById("data1");
+               print.innerHTML +=`
+                <b>PostID</b>: ${data1[i].postId} <br>
+                <b>id</b>: ${data1[i].id} <br>
+                <b>Name</b>: ${data1[i].name} <br>
+                <b>Email</b>: ${data1[i].email} <br>
+                <b>body</b>: ${data1[i].body} <br>
+                `;
+                }
+            });
+        };
+        fetchuser();
+    </script>
+</body>
+</html>
